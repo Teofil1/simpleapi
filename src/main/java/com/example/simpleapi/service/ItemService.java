@@ -6,10 +6,6 @@ import com.example.simpleapi.model.dto.ItemRequestDTO;
 import com.example.simpleapi.model.entity.Item;
 import com.example.simpleapi.repository.ItemRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.UUID;
 
