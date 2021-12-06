@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,9 +38,9 @@ public class ItemServiceTest {
     }
 
     @Test
-    public void shouldReturnItemWhenExist() {
+    public void shouldReturnItemWhenExist() throws ItemNotFoundException {
         expItem = new Item(itemId, "item");
-        when(itemRepository.getById(itemId)).thenReturn(expItem);
+        when(itemRepository.findById(itemId)).thenReturn(Optional.of(expItem));
         ItemResponseDTO itemResponseDTO = itemService.getItem(itemId);
         assertEquals(expItem.getId(), itemResponseDTO.getId());
         assertEquals(expItem.getName(), itemResponseDTO.getName());

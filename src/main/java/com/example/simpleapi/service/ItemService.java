@@ -32,10 +32,8 @@ public class ItemService {
 
 
     public ItemResponseDTO getItem(String id) {
-        Item item = itemRepository.getById(id);
-        if (item == null){
-            throw new ItemNotFoundException(id);
-        }
+        Item item = itemRepository.findById(id)
+                .orElseThrow(() -> new ItemNotFoundException(id));
         return new ItemResponseDTO(item.getId(), item.getName());
     }
 }
