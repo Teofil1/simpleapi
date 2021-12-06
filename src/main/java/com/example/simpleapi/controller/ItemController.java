@@ -20,16 +20,14 @@ public class ItemController {
 
     @PostMapping("/items")
     ResponseEntity<ItemResponseDTO> addItem(@RequestBody ItemRequestDTO itemRequestDTO) {
-        Item item = itemService.addItem(itemRequestDTO);
-        return ResponseEntity.ok(new ItemResponseDTO(item.getId(), item.getName()));
+        return ResponseEntity.ok(itemService.addItem(itemRequestDTO));
     }
 
 
     @GetMapping("/items/{id}")
     ResponseEntity<?> getItem(@PathVariable String id) {
         try {
-            Item item = itemService.getItem(id);
-            return ResponseEntity.ok(new ItemResponseDTO(item.getId(), item.getName()));
+            return ResponseEntity.ok(itemService.getItem(id));
         } catch (ItemNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
